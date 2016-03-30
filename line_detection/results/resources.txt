@@ -1,0 +1,13 @@
+Thresholding in OpenCV:
+
+
+Houghs Transform with OpenCV:
+  https://opencv-python-tutroals.readthedocs.org/en/latest/py_tutorials/py_imgproc/py_houghlines/py_houghlines.html
+
+Process:
+  1. Convert to HSV.
+  2. Threshold the HSV image for our experimentally-determined acceptable range for tape color.
+  3. Use Canny edge detection (provided by OpenCV) to detect the edges of the tape.
+  4. Use Houghs Transform (provided by OpenCV) to calculate the rho and phi for one of the lines in the Canny edges.
+
+Future Work:
