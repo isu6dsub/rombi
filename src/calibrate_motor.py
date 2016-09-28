@@ -14,7 +14,7 @@ pwm = PWM(0x40)
 
 pwm.setPWMFreq(240)                        # Set frequency to 60 Hz
 
-MOTOR_LIST = [1,2]
+MOTOR_LIST = [1,2,3,4,5,6]
 
 # Change speed of continuous servo on channel O
 #raw_input("Unplug the squid and press [Enter].")
@@ -22,6 +22,10 @@ MOTOR_LIST = [1,2]
 #  pwm.setPWM(i, 0, 4096)
 pwm.setPWM(1, 0, 0)
 pwm.setPWM(2, 0, 0)
+pwm.setPWM(3, 0, 0)
+pwm.setPWM(4, 0, 0)
+pwm.setPWM(5, 0, 0)
+pwm.setPWM(6, 0, 0)
 raw_input("Press [Enter] once the squid is plugged in.")
 #time.sleep(2)
 #for i in MOTOR_LIST:
