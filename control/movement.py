@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+from sub import *
 
 def sub_move_forward(motor_set, speed):
 	print("Not usable yet")
