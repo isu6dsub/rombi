@@ -31,6 +31,8 @@ public class Rombi {
 			System.exit(-1);
 		}
 		
+		motors = new Motor[6];
+		
 		for(int i = 1; i < 7; i++) {
 			motors[i-1] = new Motor(pwmBoard.getChannel(i));
 		}
