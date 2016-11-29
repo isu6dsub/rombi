@@ -1,5 +1,10 @@
 package Sub.Components;
 
+import java.io.IOException;
+
+import se.hirt.pi.adafruit.pwm.PWMDevice;
+import se.hirt.pi.adafruit.pwm.PWMDevice.PWMChannel;
+
 public class Motor {
 	//Static values for the minimum, midpoint, and maximum value
 	private static int MIN_PWM = 800;
@@ -12,14 +17,14 @@ public class Motor {
 	//Variables that hold data for each motor.
 	private int speed;
 	private Direction motorDirection;
-	private int pwm_channel;
+	private PWMChannel pwm_channel;
 	
 	/**
 	 * 
 	 * @param channel
 	 */
-	public Motor(int channel){
-		this.speed = MID_PWM;
+	public Motor(PWMChannel channel){
+		this.speed = 0;
 		this.motorDirection = Direction.FORWARD;
 		this.pwm_channel = channel;
 	}
@@ -29,19 +34,36 @@ public class Motor {
 	 */
 	public void stop(){
 		//TODO: Do stopping stuff
+		speed = 0;
+		try {
+			pwm_channel.setPWM(0, MID_PWM);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
 	 * 
 	 * @param speed New speed of the sub as a percentage
+	 * @throws IOException 
 	 */
 	public int setSpeed(int speed){
 		if(speed > 100 || speed < 0){
 			return -1;
 		}
 		
-		//TODO: Set speed stuff based on direction
-		
+		if(motorDirection == Direction.FORWARD){
+			speed = (int) (MID_PWM + (MAX_PWM - MID_PWM) * (speed/100.0));
+		}
+		else {
+			speed = (int) (MID_PWM - (MAX_PWM - MID_PWM) * 1-(speed/100.0));
+		}
+		try {
+			pwm_channel.setPWM(0, speed);
+		} catch (IOException e) {
+			return -2;
+		}
 		return 0;
 	}
 	
