@@ -36,11 +36,13 @@ import java.io.IOException;
 import com.pi4j.io.i2c.I2CBus;
 import com.pi4j.io.i2c.I2CDevice;
 import com.pi4j.io.i2c.I2CFactory;
+import com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException;
 
 /**
  * This class represents an Adafruit 16 channel I2C PWM driver board.
  * 
  * @author Marcus Hirt
+ * Edited by Vaughn Dorsey, 11/28/16
  */
 @SuppressWarnings("unused")
 // Not using all commands - yet.
@@ -76,8 +78,9 @@ public class PWMDevice {
 	 * 
 	 * @throws IOException
 	 *             if there was communication problem
+	 * @throws UnsupportedBusNumberException 
 	 */
-	public PWMDevice() throws IOException {
+	public PWMDevice() throws IOException, UnsupportedBusNumberException {
 		// 0x40 is the default address used by the AdaFruit PWM board.
 		this(I2CBus.BUS_1, 0x40);
 	}
@@ -95,8 +98,9 @@ public class PWMDevice {
 	 * 
 	 * @throws IOException
 	 *             if there was communication problem
+	 * @throws UnsupportedBusNumberException 
 	 */
-	public PWMDevice(int bus, int address) throws IOException {
+	public PWMDevice(int bus, int address) throws IOException, UnsupportedBusNumberException {
 		this.bus = bus;
 		this.address = address;
 		i2cDevice = I2CFactory.getInstance(bus).getDevice(address);
