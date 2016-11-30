@@ -11,7 +11,7 @@ public class main {
 		
 		//Put sub setup stuff here
 		Rombi rombi = new Rombi();
-		
+		Scanner in = new Scanner(System.in);
 		System.out.println("Submarine Setup Complete. Beginning main control program.");
 		
 		int exit = 0;
@@ -20,7 +20,6 @@ public class main {
 			System.out.println("1. Set Motor Speed");
 			System.out.println("2. Stop All Motors");
 			System.out.println("3. Shut Rombi Down");
-			Scanner in = new Scanner(System.in);
 			int choice = in.nextInt();
 			
 			switch(choice){
@@ -49,7 +48,7 @@ public class main {
 					break;
 			}
 			
-			in.close();
 		}
+		in.close();
 	}
 }
