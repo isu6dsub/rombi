@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 import Sub.Rombi;
 
-public class main {
+public class Main {
 	public static void main(String[] args){
-		System.out.println("ROMBI Control Program v.0.0.1-alpha");
+		System.out.println("ROMBI Control Program v0.1.0");
 		System.out.println("Beginning Submarine Setup");
 		
 		//Put sub setup stuff here
@@ -20,6 +20,11 @@ public class main {
 			System.out.println("1. Set Motor Speed");
 			System.out.println("2. Stop All Motors");
 			System.out.println("3. Shut Rombi Down");
+			
+			while(!in.hasNext()){
+				
+			}
+			
 			int choice = in.nextInt();
 			
 			switch(choice){
