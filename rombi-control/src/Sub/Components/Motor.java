@@ -36,7 +36,7 @@ public class Motor {
 		//TODO: Do stopping stuff
 		speed = 0;
 		try {
-			pwm_channel.setPWM(0, MID_PWM);
+			pwm_channel.setPWM(0, 0);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

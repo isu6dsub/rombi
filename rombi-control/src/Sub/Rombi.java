@@ -12,29 +12,40 @@ public class Rombi {
 	
 	public Rombi() {
 		//TODO: Load some sort of config
-		try {
-			pwmBoard = new PWMDevice();
-		} catch (IOException e) {
-			System.out.println("There was an I/O problem. System can't continue.");
-			e.printStackTrace();
-			System.exit(-1);
-		} catch (UnsupportedBusNumberException e) {
-			System.out.println("Invalid Bus number. System can't continue.");
-			e.printStackTrace();
-			System.exit(-1);
+		if(System.getProperty("os.arch").equals("amd64")){
+			
 		}
-		try {
-			pwmBoard.setPWMFreqency(240.0);
-		} catch (IOException e) {
-			System.out.println("Unable to set PWM frequency. System can't continue");
-			e.printStackTrace();
-			System.exit(-1);
+		else {
+			try {
+				pwmBoard = new PWMDevice();
+			} catch (IOException e) {
+				System.out.println("There was an I/O problem. System can't continue.");
+				e.printStackTrace();
+				System.exit(-1);
+			} catch (UnsupportedBusNumberException e) {
+				System.out.println("Invalid Bus number. System can't continue.");
+				e.printStackTrace();
+				System.exit(-1);
+			}
+			try {
+				pwmBoard.setPWMFreqency(240.0);
+			} catch (IOException e) {
+				System.out.println("Unable to set PWM frequency. System can't continue");
+				e.printStackTrace();
+				System.exit(-1);
+			}
 		}
 		
 		motors = new Motor[6];
 		
 		for(int i = 1; i < 7; i++) {
 			motors[i-1] = new Motor(pwmBoard.getChannel(i));
+		}
+	}
+	
+	public void stop(){
+		for(Motor m:motors){
+			m.stop();
 		}
 	}
 }
