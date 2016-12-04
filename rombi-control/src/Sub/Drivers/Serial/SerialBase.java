@@ -6,6 +6,7 @@ public abstract class SerialBase {
 	private String devName;
 	private int fileDescriptor;
 	private int baud;
+	private int lineLength;
 	
 	public SerialBase(String dev, int baud, int line){
 		this.devName = dev;
@@ -19,7 +20,7 @@ public abstract class SerialBase {
 	}
 	
 	public byte[] read(int bytes){
-		return Serial.serialGetBytes(arg0, arg1);
+		return Serial.serialGetBytes(fileDescriptor, lineLength);
 	}
 	
 	
