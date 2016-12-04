@@ -17,7 +17,7 @@ public class Main {
 		int exit = 0;
 		while(exit==0){
 			System.out.println("Available Commands:");
-			System.out.println("1. Set Motor Speed"); //TODO: Need to write code for manuevers.
+			System.out.println("1. Set Motor Speed"); //TODO: Need to write code for maneuvers.
 			System.out.println("2. Stop All Motors"); //TODO: Change to stop submarine
 			System.out.println("3. Shut Rombi Down");
 			

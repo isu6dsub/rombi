@@ -2,8 +2,7 @@ package Sub.Components;
 
 import java.io.IOException;
 
-import se.hirt.pi.adafruit.pwm.PWMDevice;
-import se.hirt.pi.adafruit.pwm.PWMDevice.PWMChannel;
+import Sub.Drivers.PWM.*;
 
 public class Motor {
 	//Static values for the minimum, midpoint, and maximum value
@@ -17,16 +16,16 @@ public class Motor {
 	//Variables that hold data for each motor.
 	private int speed;
 	private Direction motorDirection;
-	private PWMChannel pwm_channel;
+	private PWMChannelBase pwm_channel;
 	
 	/**
 	 * 
-	 * @param channel
+	 * @param pwmChannelBase
 	 */
-	public Motor(PWMChannel channel){
+	public Motor(PWMChannelBase pwmChannelBase){
 		this.speed = 0;
 		this.motorDirection = Direction.FORWARD;
-		this.pwm_channel = channel;
+		this.pwm_channel = pwmChannelBase;
 	}
 	
 	/**
