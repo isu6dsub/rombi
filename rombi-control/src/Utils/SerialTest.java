@@ -36,7 +36,7 @@ public class SerialTest {
 			System.out.println("Connected.");
 			
 			while(true){
-				System.out.println(serial.read(25, Charset.defaultCharset()).toString());
+				System.out.println(serial.read(22, Charset.defaultCharset()).toString());
 			}
 		}
 		catch(IOException e){
