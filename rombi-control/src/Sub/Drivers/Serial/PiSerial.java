@@ -18,7 +18,7 @@ public class PiSerial extends SerialBase{
 		byte[] result = Serial.serialGetBytes(fileDescriptor, lineLength);
 		String readableResult = "";
 		for(byte b: result){
-			readableResult += Byte.toString(b);
+			readableResult += b;
 		}
 		return readableResult;
 	}
