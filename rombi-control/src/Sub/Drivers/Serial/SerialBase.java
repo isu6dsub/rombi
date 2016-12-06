@@ -3,10 +3,10 @@ package Sub.Drivers.Serial;
 import com.pi4j.wiringpi.Serial;
 
 public abstract class SerialBase {
-	private String devName;
-	private int fileDescriptor;
-	private int baud;
-	private int lineLength;
+	protected String devName;
+	protected int fileDescriptor;
+	protected int baud;
+	protected int lineLength;
 	
 	public SerialBase(String dev, int baud, int line){
 		this.devName = dev;
@@ -15,13 +15,16 @@ public abstract class SerialBase {
 		this.lineLength = line;
 	}
 	
-	public void initializeConnection(){
-		fileDescriptor = Serial.serialOpen(devName, baud);
+	public void open(){
+		//For the base, don't actually make a connection unless we have serial emulation software available.
 	}
 	
-	public byte[] read(int bytes){
-		return Serial.serialGetBytes(fileDescriptor, lineLength);
+	public String read(){
+		//For the base, don't actually read anyting unless we have serial emulation software available.
+		return "";
 	}
 	
-	
+	public void close(){
+		
+	}
 }

@@ -4,17 +4,19 @@ import java.io.IOException;
 import com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException;
 
 import Sub.Drivers.PWM.*;
-import Sub.Components.Motor;
+import Sub.Drivers.Serial.*;
+import Sub.Components.*;
 
 public class Rombi {
-	public Motor motors[];
-	public PWMBase pwmBoard;
+	private Motor motors[];
+	private PWMBase pwmBoard;
+	private IMU imu;
 	
 	public Rombi() {
 		//TODO: Load some sort of config
 		if(System.getProperty("os.arch").equals("amd64")){
 			pwmBoard = new TestPWMDevice();
-			
+			imu = new IMU();
 		}
 		else {
 			try {

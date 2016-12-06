@@ -22,7 +22,7 @@ public class Main {
 			System.out.println("3. Shut Rombi Down");
 			
 			while(!in.hasNext()){
-				//TODO: Check state of IMU and adjust trajectory
+				
 			}
 			
 			String choice = in.next();
