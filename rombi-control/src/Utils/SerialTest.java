@@ -12,7 +12,10 @@ public class SerialTest {
 	public static void main(String[] args){
 		PiSerial serial = new PiSerial("/dev/ttyUSB0", 57600, 80);
 		serial.open();
-		String output = serial.read();
-		serial.close();
+		while(true) {
+			String output = serial.read();
+			System.out.println(output);
+		}
+		//serial.close();
 	}
 }
