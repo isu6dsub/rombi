@@ -13,8 +13,12 @@ public class SerialTest {
 		PiSerial serial = new PiSerial("/dev/ttyUSB0", 57600, 80);
 		serial.open();
 		while(true) {
-			String output = serial.read();
-			System.out.println(output);
+			if(serial.hasData()){
+				if(serial.amountDataAvailable() == 80){
+					String output = serial.read();
+					System.out.println(output);
+				}
+			}
 		}
 		//serial.close();
 	}

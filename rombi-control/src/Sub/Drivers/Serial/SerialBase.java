@@ -27,4 +27,12 @@ public abstract class SerialBase {
 	public void close(){
 		
 	}
+	
+	public boolean hasData() {
+		return true;
+	}
+	
+	public int amountDataAvailable() {
+		return 0;
+	}
 }

@@ -27,4 +27,14 @@ public class PiSerial extends SerialBase{
 	public void close() {
 		Serial.serialClose(fileDescriptor);
 	}
+	
+	@Override
+	public boolean hasData() {
+		return Serial.serialDataAvail(fileDescriptor)>0;
+	}
+	
+	@Override
+	public int amountDataAvailable() {
+		return Serial.serialDataAvail(fileDescriptor);
+	}
 }
