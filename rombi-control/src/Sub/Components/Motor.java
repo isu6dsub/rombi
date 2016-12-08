@@ -4,6 +4,11 @@ import java.io.IOException;
 
 import Sub.Drivers.PWM.*;
 
+/**
+ * 
+ * @author Vaughn Dorsey
+ *
+ */
 public class Motor {
 	//Static values for the minimum, midpoint, and maximum value
 	private static int MIN_PWM = 800;
@@ -32,12 +37,11 @@ public class Motor {
 	 * 
 	 */
 	public void stop(){
-		//TODO: Do stopping stuff
 		speed = 0;
 		try {
 			pwm_channel.setPWM(0, 0);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			// TODO Make a scary error message?
 			e.printStackTrace();
 		}
 	}
@@ -64,6 +68,14 @@ public class Motor {
 			return -2;
 		}
 		return 0;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public int getSpeed(){
+		return speed;
 	}
 	
 	/**

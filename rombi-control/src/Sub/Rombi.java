@@ -4,7 +4,7 @@ import java.io.IOException;
 import com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException;
 
 import Sub.Drivers.PWM.*;
-import Sub.Drivers.Serial.*;
+import Sub.Logic.Movement;
 import Sub.Components.*;
 
 public class Rombi {
@@ -37,6 +37,8 @@ public class Rombi {
 				e.printStackTrace();
 				System.exit(-1);
 			}
+			
+			imu = new IMU();
 		}
 		
 		motors = new Motor[6];
@@ -50,5 +52,23 @@ public class Rombi {
 		for(Motor m:motors){
 			m.stop();
 		}
+	}
+	
+	public void systemCheck(){
+		imu.checkAndCorrect(motors);
+	}
+
+	public void interpretCommand(String command) {
+		String[] commands = command.toLowerCase().split("-");
+		if(commands.length == 3 && commands[0].equals("move")){
+			int givenSpeed = Integer.parseInt(commands[2]);
+			if(givenSpeed >= 0 && givenSpeed <= 100) {
+				if(commands[1].equals("forward")) Movement.Forward(givenSpeed, motors);
+				else if(commands[1].equals("backward")) Movement.Backward(givenSpeed, motors);
+				else System.out.println("Either the movement direction is invalid or not supported yet. Check and try again.");
+			}
+			else System.out.println("Invalid Speed Given.");
+		}
+		else System.out.println("I don't understand the command you've given me. Given Command: "+command+" Parse Attempt: "+commands[0]+" "+commands[1]+" "+commands[2]);
 	}
 }
