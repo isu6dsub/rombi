@@ -125,6 +125,7 @@ public class IMU {
 		}
 		else{
 			result[0]=5.0;
+			result[1]=firstPass.length;
 		}
 		return result;
 	}
