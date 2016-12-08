@@ -14,14 +14,6 @@ public class SerialTest {
 	
 	public static void main(String[] args){
 		final Serial serial = SerialFactory.createInstance();
-		serial.addListener(new SerialDataEventListener()
-				{
-					@Override
-					public void dataReceived(SerialDataEvent arg0) {
-						System.out.println("Recieved");
-						
-					}
-				});
 		try {
 			SerialConfig config = new SerialConfig();
 			
