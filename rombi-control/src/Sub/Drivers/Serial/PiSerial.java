@@ -7,15 +7,13 @@ import com.pi4j.io.serial.*;
 
 
 public class PiSerial implements SerialBase{
-	protected String devName;
-	protected final Serial serial;
-	protected int baud;
+	protected Serial serial;
 	protected int lineLength;
 	protected SerialConfig config;
 	
 	public PiSerial(String dev, int baud, int line) {
-		config = new SerialConfig();
 		serial = SerialFactory.createInstance();
+		config = new SerialConfig();
 		config.device("/dev/ttyUSB0").baud(Baud._57600);
 	}
 	
