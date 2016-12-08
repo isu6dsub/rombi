@@ -32,7 +32,9 @@ public class PiSerial implements SerialBase{
 	@Override
 	public String read() {
 		try {
-			return serial.read(22, Charset.defaultCharset()).toString();
+			String read = serial.read(22, Charset.defaultCharset()).toString();
+			System.out.println(read);
+			return read;
 		} catch (IllegalStateException e) {
 			return "Illegal State.";
 		} catch (IOException e) {
