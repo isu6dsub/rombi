@@ -24,7 +24,7 @@ public class ConsoleUI {
 			System.out.println(choice);
 			switch(choice){
 				case "1": //TODO: Move setting speed code somewhere else. Probably to Rombi class.
-					while(!in.hasNext());
+					while(!in.hasNextLine());
 					rombi.interpretCommand(in.next());
 					break;
 				case "2":
