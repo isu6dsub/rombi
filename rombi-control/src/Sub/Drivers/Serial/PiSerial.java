@@ -14,6 +14,7 @@ public class PiSerial implements SerialBase{
 	protected SerialConfig config;
 	
 	public PiSerial(String dev, int baud, int line) {
+		config = new SerialConfig();
 		config.device("/dev/ttyUSB0").baud(Baud._57600);
 	}
 	
