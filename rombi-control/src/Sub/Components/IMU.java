@@ -31,6 +31,7 @@ public class IMU {
 			while(read.length() != 22 && !read.contains("YPR=")){
 				read = connection.read();
 			}
+			System.out.println(read);
 			level = parseSerial(read);
 			lastReading = level.clone();
 			System.out.println("LAST IMU READING: Yaw:"+lastReading[0]+" Pitch:"+lastReading[1]+" Roll:"+lastReading[2]);
@@ -43,6 +44,7 @@ public class IMU {
 		while(read.length() != 22 && !read.contains("YPR=")){
 			read = connection.read();
 		}
+		System.out.println(read);
 		lastReading = parseSerial(read);
 		System.out.println("LAST IMU READING: Yaw:"+lastReading[0]+" Pitch:"+lastReading[1]+" Roll:"+lastReading[2]);
 		//If the sub is yawing more than a little to the right, speedup the right motor to balance it
