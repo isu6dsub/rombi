@@ -27,7 +27,11 @@ public class IMU {
 			connection = new PiSerial("/dev/ttyUSB0", 57600, 22);
 			System.out.println(connection.open());
 			flat = new double[]{0.00, 0.00, 0.00};
-			level = parseSerial(connection.read());
+			String read = connection.read();
+			while(read.length() != 22 && !read.contains("YPR=")){
+				read = connection.read();
+			}
+			level = parseSerial(read);
 			lastReading = level.clone();
 			System.out.println("LAST IMU READING: Yaw:"+lastReading[0]+" Pitch:"+lastReading[1]+" Roll:"+lastReading[2]);
 
@@ -35,7 +39,11 @@ public class IMU {
 	}
 	
 	public void checkAndCorrect(Motor[] motors){
-		lastReading = parseSerial(connection.read());
+		String read = connection.read();
+		while(read.length() != 22 && !read.contains("YPR=")){
+			read = connection.read();
+		}
+		lastReading = parseSerial(read);
 		System.out.println("LAST IMU READING: Yaw:"+lastReading[0]+" Pitch:"+lastReading[1]+" Roll:"+lastReading[2]);
 		//If the sub is yawing more than a little to the right, speedup the right motor to balance it
 		if(lastReading[0] > (level[0] + 0.05)) {
@@ -125,8 +133,6 @@ public class IMU {
 		}
 		else{
 			result[0]=5.0;
-			result[1]=firstPass.length;
-			System.out.println(firstPass[0]);
 		}
 		return result;
 	}
