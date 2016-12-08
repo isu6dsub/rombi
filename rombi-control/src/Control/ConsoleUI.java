@@ -9,13 +9,13 @@ public class ConsoleUI {
 		int exit = 0;
 		Scanner in = new Scanner(System.in);
 		
-		while(exit==0){
+		while(true){
 			System.out.println("Available Commands:");
 			System.out.println("1. Give Command"); //TODO: Need to write code for maneuvers.
 			System.out.println("2. Stop Vehicle"); 
 			System.out.println("3. Shut Rombi Down");
 			
-			while(!in.hasNext()){
+			while(!in.hasNextLine()){
 				System.out.println("System Check");
 				rombi.systemCheck();
 			}

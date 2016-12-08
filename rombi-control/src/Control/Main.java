@@ -12,5 +12,7 @@ public class Main {
 		System.out.println("Submarine Setup Complete. Beginning main control program.");
 
 		ConsoleUI.run(rombi);
+		
+		System.exit(0);
 	}
 }
