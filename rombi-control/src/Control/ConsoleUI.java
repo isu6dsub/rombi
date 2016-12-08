@@ -15,6 +15,7 @@ public class ConsoleUI {
 			System.out.println("2. Stop Vehicle"); 
 			System.out.println("3. Shut Rombi Down");
 			
+			rombi.systemCheck();
 			while(!in.hasNextLine()){
 				System.out.println("System Check");
 				rombi.systemCheck();

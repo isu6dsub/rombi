@@ -29,6 +29,8 @@ public class IMU {
 			flat = new double[]{0.00, 0.00, 0.00};
 			level = parseSerial(connection.read());
 			lastReading = level.clone();
+			System.out.println("LAST IMU READING: Yaw:"+lastReading[0]+" Pitch:"+lastReading[1]+" Roll:"+lastReading[2]);
+
 		}
 	}
 	
