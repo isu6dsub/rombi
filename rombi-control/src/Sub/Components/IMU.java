@@ -25,6 +25,7 @@ public class IMU {
 		}
 		else {
 			connection = new PiSerial("/dev/ttyUSB0", 57600, 22);
+			connection.open();
 			flat = new double[]{0.00, 0.00, 0.00};
 			level = parseSerial(connection.read());
 			lastReading = level.clone();
