@@ -79,4 +79,13 @@ public class Motor {
 		}
 		
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean direction(){
+		if(motorDirection == Direction.FORWARD) return true;
+		else return false;
+	}
 }
