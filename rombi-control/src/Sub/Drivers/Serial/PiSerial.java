@@ -1,40 +1,52 @@
 package Sub.Drivers.Serial;
 
-import com.pi4j.wiringpi.Serial;
+import java.io.IOException;
+import java.nio.charset.Charset;
 
-public class PiSerial extends SerialBase{
+import com.pi4j.io.serial.*;
 
+
+public class PiSerial implements SerialBase{
+	protected String devName;
+	protected Serial serial;
+	protected int baud;
+	protected int lineLength;
+	protected SerialConfig config;
+	
 	public PiSerial(String dev, int baud, int line) {
-		super(dev, baud, line);
+		config.device("/dev/ttyUSB0").baud(Baud._57600);
 	}
 	
 	@Override
-	public void open() {
-		fileDescriptor = Serial.serialOpen(devName, baud);
+	public String open() {
+		try {
+			serial.open(config);
+			return "Connected.";
+		} catch (IOException e) {
+			return "Connection Failure.";
+		}
 	}
 	
 	@Override
 	public String read() {
-		byte[] result = Serial.serialGetBytes(fileDescriptor, lineLength);
-		String readableResult = "";
-		for(byte b: result){
-			readableResult += b;
+		try {
+			return serial.read(22, Charset.defaultCharset()).toString();
+		} catch (IllegalStateException e) {
+			return "Illegal State.";
+		} catch (IOException e) {
+			return "IO Exception.";
 		}
-		return readableResult;
 	}
 	
 	@Override
 	public void close() {
-		Serial.serialClose(fileDescriptor);
+		try {
+			serial.close();
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-	
-	@Override
-	public boolean hasData() {
-		return Serial.serialDataAvail(fileDescriptor)>0;
-	}
-	
-	@Override
-	public int amountDataAvailable() {
-		return Serial.serialDataAvail(fileDescriptor);
-	}
+
 }
