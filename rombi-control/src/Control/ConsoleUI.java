@@ -16,6 +16,7 @@ public class ConsoleUI {
 			System.out.println("3. Shut Rombi Down");
 			
 			while(!in.hasNext()){
+				System.out.println("System Check");
 				rombi.systemCheck();
 			}
 			
