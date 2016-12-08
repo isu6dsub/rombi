@@ -124,7 +124,7 @@ public class IMU {
 			}
 		}
 		else{
-			result[0]=4.0;
+			result[0]=5.0;
 		}
 		return result;
 	}
