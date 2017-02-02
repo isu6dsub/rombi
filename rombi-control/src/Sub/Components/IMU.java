@@ -20,8 +20,9 @@ public class IMU {
 	public IMU(){
 		if(System.getProperty("os.arch").equals("amd64")){
 			connection = new TestSerial("null", 0, 22);
-			flat = new double[]{0.0, -9.0, 0.0};
-			level = new double[]{0.0, -9.0, 0.0};
+			flat = new double[]{0.0, 0.0, 0.0};
+			level = new double[]{0.0, 0.0, 0.0};
+			lastReading = new double[]{0.0, 0.0, 0.0};
 		}
 		else {
 			connection = new PiSerial("/dev/ttyUSB0", 57600, 22);
@@ -29,6 +30,7 @@ public class IMU {
 			flat = new double[]{0.00, 0.00, 0.00};
 			String read = connection.read();
 			while(read.length() != 22 && !read.contains("YPR=")){
+				System.out.println("Attempting to read IMU.");
 				read = connection.read();
 			}
 			System.out.println(read); 
@@ -130,10 +132,12 @@ public class IMU {
 				}
 			}
 			else{
+				System.out.println("Not enough entries to parse.");
 				result[0]=4.0;
 			}
 		}
 		else{
+			System.out.println("Invalid format.");
 			result[0]=5.0;
 		}
 		return result;

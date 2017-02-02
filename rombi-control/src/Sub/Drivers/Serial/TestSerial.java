@@ -16,7 +16,7 @@ public class TestSerial implements SerialBase{
 	@Override
 	public String read() {
 		// TODO Auto-generated method stub
-		return null;
+		return "#YPR=+0.00,+1.00,+0.00";
 	}
 
 	@Override

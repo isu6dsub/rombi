@@ -38,8 +38,10 @@ public class PiSerial implements SerialBase{
 			System.out.println(read);
 			return read;
 		} catch (IllegalStateException e) {
+			System.out.println("Illegal State.");
 			return "Illegal State.";
 		} catch (IOException e) {
+			System.out.println("IO Exception.");
 			return "IO Exception.";
 		}
 	}
