@@ -11,6 +11,8 @@ public class Main {
 		Rombi rombi = new Rombi();
 		System.out.println("Submarine Setup Complete. Beginning main control program.");
 
+		//Start the text console
+		//TODO: Make a command line arg switch for autonomous and manual
 		ConsoleUI.run(rombi);
 		
 		System.exit(0);

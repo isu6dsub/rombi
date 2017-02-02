@@ -3,7 +3,7 @@ package Control;
 import java.util.Scanner;
 
 import Sub.Rombi;
-
+//TODO: Replace this entire thing with a curses-based UI.
 public class ConsoleUI {
 	public static void run(Rombi rombi){
 		int exit = 0;

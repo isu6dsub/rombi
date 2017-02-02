@@ -27,6 +27,10 @@ public class PiSerial implements SerialBase{
 		}
 	}
 	
+	//This function isn't working
+	//TODO: Try to determine what is being read and why it isn't being understood.
+	//Or, if it is reading correctly, then figure out what the problem is.
+	//If no solution is available, then replace the whole thing with a Python solution, as it did work.
 	@Override
 	public String read() {
 		try {

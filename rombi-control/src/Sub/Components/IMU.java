@@ -31,7 +31,7 @@ public class IMU {
 			while(read.length() != 22 && !read.contains("YPR=")){
 				read = connection.read();
 			}
-			System.out.println(read);
+			System.out.println(read); 
 			level = parseSerial(read);
 			lastReading = level.clone();
 			System.out.println("LAST IMU READING: Yaw:"+lastReading[0]+" Pitch:"+lastReading[1]+" Roll:"+lastReading[2]);
