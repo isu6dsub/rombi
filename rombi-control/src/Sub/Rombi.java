@@ -69,6 +69,6 @@ public class Rombi {
 			}
 			else System.out.println("Invalid Speed Given.");
 		}
-		else System.out.println("I don't understand the command you've given me. Given Command: "+command+" Parse Attempt: "+commands[0]+" "+commands[1]+" "+commands[2]);
+		else System.out.println("I don't understand the command you've given me. Given Command: "+command);
 	}
 }
