@@ -33,10 +33,12 @@ public class PiSerial implements SerialBase{
 		try {
 			char lastChar = ' ';
 			String ypr = "";
+			serial.discardAll();
 			while(lastChar != '\n'){
 				lastChar = serial.read(1, Charset.defaultCharset()).toString().charAt(0);
-				if(ypr.length() == 0 && lastChar == '\n') lastChar = ' ';
+				if(ypr.length() == 0 && lastChar != '#') lastChar = ' ';
 				else if(lastChar == '\n') break;
+				else if(lastChar == '#') ypr = lastChar + "";
 				else ypr += lastChar + "";
 			}
 			return ypr;
