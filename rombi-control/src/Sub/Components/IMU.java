@@ -43,9 +43,6 @@ public class IMU {
 	
 	public void checkAndCorrect(Motor[] motors){
 		String read = connection.read();
-		while(read.length() != 22 && !read.contains("YPR=")){
-			read = connection.read();
-		}
 		System.out.println(read);
 		lastReading = parseSerial(read);
 		System.out.println("LAST IMU READING: Yaw:"+lastReading[0]+" Pitch:"+lastReading[1]+" Roll:"+lastReading[2]);

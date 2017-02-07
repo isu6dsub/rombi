@@ -27,10 +27,7 @@ public class PiSerial implements SerialBase{
 		}
 	}
 	
-	//This function isn't working
-	//TODO: Try to determine what is being read and why it isn't being understood.
-	//Or, if it is reading correctly, then figure out what the problem is.
-	//If no solution is available, then replace the whole thing with a Python solution, as it did work.
+	//This now works. Was some weird issue, I guess. Now I just need to make it 
 	@Override
 	public String read() {
 		try {
@@ -39,9 +36,9 @@ public class PiSerial implements SerialBase{
 			while(lastChar != '\n'){
 				lastChar = serial.read(1, Charset.defaultCharset()).toString().charAt(0);
 				if(ypr.length() == 0 && lastChar == '\n') lastChar = ' ';
+				else if(lastChar == '\n') break;
 				else ypr += lastChar + "";
 			}
-			System.out.println(ypr);
 			return ypr;
 		} catch (IllegalStateException e) {
 			System.out.println("Illegal State.");

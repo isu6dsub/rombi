@@ -17,6 +17,13 @@ public class ConsoleUI {
 			
 			rombi.systemCheck();
 			while(!in.hasNextLine()){
+				//Slow this down.
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					Thread.currentThread().interrupt();
+				}
 				System.out.println("System Check");
 				rombi.systemCheck();
 			}
