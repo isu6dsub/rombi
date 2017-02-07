@@ -34,9 +34,15 @@ public class PiSerial implements SerialBase{
 	@Override
 	public String read() {
 		try {
-			String read = serial.read(22, Charset.defaultCharset()).toString();
-			System.out.println(read);
-			return read;
+			char lastChar = ' ';
+			String ypr = "";
+			while(lastChar != '\n'){
+				lastChar = serial.read(1, Charset.defaultCharset()).toString().charAt(0);
+				if(ypr.length() == 0 && lastChar == '\n') lastChar = ' ';
+				else ypr += lastChar + "";
+			}
+			System.out.println(ypr);
+			return ypr;
 		} catch (IllegalStateException e) {
 			System.out.println("Illegal State.");
 			return "Illegal State.";
