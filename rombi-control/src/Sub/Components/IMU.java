@@ -116,6 +116,146 @@ public class IMU {
 				}
 			}
 		}
+		//If the 
+		if(lastReading[1] > (level[1] + 0.05)) {
+			//The values might need adjusted later
+			double difference = lastReading[0] - (level[0]);
+			int speed = motors[5].getSpeed();
+			//If the right motor is already at full speed
+			if(speed == 100){
+				//Then lets slow down the left motor instead
+				speed = motors[2].getSpeed();
+				if(difference < 0.50){
+					int newSpeed = speed - 2;
+					if(newSpeed < 0) speed = 0; //We can only decrease the throttle to 0.
+					motors[2].setSpeed(speed);
+				}
+				else {
+					int newSpeed = speed - 5;
+					if(newSpeed < 0) speed = 0; //We can only decrease the throttle to 0.
+					motors[2].setSpeed(speed);
+				}
+			}
+			//Otherwise there's room to move it
+			else {
+				//If it's a small difference, slowly speed the motors up.
+				if(difference < 0.50){
+					int newSpeed = speed + 2;
+					if(newSpeed > 100) speed = 100; //We can only increase the throttle to 100.
+					motors[5].setSpeed(speed);
+				}
+				else {
+					int newSpeed = speed + 5;
+					if(newSpeed > 100) speed = 100; //We can only increase the throttle to 100.
+					motors[5].setSpeed(speed);
+				}
+			}
+		}
+		//Otherwise, if the sub is yawing more than a little to the left, speedup the left motor to balance it
+		else if(lastReading[1] < (level[1] - 0.05)) {
+			//The values might need adjusted later
+			double difference = lastReading[0] - (level[0]);
+			int speed = motors[2].getSpeed();
+			//If the left motor is already at full speed
+			if(speed == 100){
+				//Then lets slow down the right motor instead
+				speed = motors[5].getSpeed();
+				if(difference < 0.50){
+					int newSpeed = speed - 2;
+					if(newSpeed < 0) speed = 0; //We can only set the throttle to 100.
+					motors[5].setSpeed(speed);
+				}
+				else {
+					int newSpeed = speed - 5;
+					if(newSpeed < 0) speed = 0; //We can only set the throttle to 100.
+					motors[5].setSpeed(speed);
+				}
+			}
+			//Otherwise there's room to move it
+			else {
+				//If it's a small difference, slowly speed the motor up.
+				if(difference < 0.50){
+					int newSpeed = speed + 2;
+					if(newSpeed > 100) speed = 100; //We can only set the throttle to 100.
+					motors[2].setSpeed(speed);
+				}
+				else {
+					int newSpeed = speed + 5;
+					if(newSpeed > 100) speed = 100; //We can only set the throttle to 100.
+					motors[2].setSpeed(speed);
+				}
+			}
+		}
+		
+		if(lastReading[2] > (level[2] + 0.05)) {
+			//The values might need adjusted later
+			double difference = lastReading[0] - (level[0]);
+			int speed = motors[6].getSpeed();
+			//If the right motor is already at full speed
+			if(speed == 100){
+				//Then lets slow down the left motor instead
+				speed = motors[3].getSpeed();
+				if(difference < 0.50){
+					int newSpeed = speed - 2;
+					if(newSpeed < 0) speed = 0; //We can only decrease the throttle to 0.
+					motors[3].setSpeed(speed);
+				}
+				else {
+					int newSpeed = speed - 5;
+					if(newSpeed < 0) speed = 0; //We can only decrease the throttle to 0.
+					motors[3].setSpeed(speed);
+				}
+			}
+			//Otherwise there's room to move it
+			else {
+				//If it's a small difference, slowly speed the motors up.
+				if(difference < 0.50){
+					int newSpeed = speed + 2;
+					if(newSpeed > 100) speed = 100; //We can only increase the throttle to 100.
+					motors[6].setSpeed(speed);
+				}
+				else {
+					int newSpeed = speed + 5;
+					if(newSpeed > 100) speed = 100; //We can only increase the throttle to 100.
+					motors[6].setSpeed(speed);
+				}
+			}
+		}
+		//Otherwise, if the sub is yawing more than a little to the left, speedup the left motor to balance it
+		else if(lastReading[2] < (level[2] - 0.05)) {
+			//The values might need adjusted later
+			double difference = lastReading[0] - (level[0]);
+			int speed = motors[3].getSpeed();
+			//If the left motor is already at full speed
+			if(speed == 100){
+				//Then lets slow down the right motor instead
+				speed = motors[6].getSpeed();
+				if(difference < 0.50){
+					int newSpeed = speed - 2;
+					if(newSpeed < 0) speed = 0; //We can only set the throttle to 100.
+					motors[6].setSpeed(speed);
+				}
+				else {
+					int newSpeed = speed - 5;
+					if(newSpeed < 0) speed = 0; //We can only set the throttle to 100.
+					motors[6].setSpeed(speed);
+				}
+			}
+			//Otherwise there's room to move it
+			else {
+				//If it's a small difference, slowly speed the motor up.
+				if(difference < 0.50){
+					int newSpeed = speed + 2;
+					if(newSpeed > 100) speed = 100; //We can only set the throttle to 100.
+					motors[3].setSpeed(speed);
+				}
+				else {
+					int newSpeed = speed + 5;
+					if(newSpeed > 100) speed = 100; //We can only set the throttle to 100.
+					motors[3].setSpeed(speed);
+				}
+			}
+		}
 	}
 	
 	private double[] parseSerial(String input){

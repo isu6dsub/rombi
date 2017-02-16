@@ -57,9 +57,13 @@ public class Rombi {
 	public void systemCheck(){
 		imu.checkAndCorrect(motors);
 	}
+	
+	public void availableCommands(){
+		
+	}
 
 	public void interpretCommand(String command) {
-		String[] commands = command.toLowerCase().split("-");
+		String[] commands = command.toLowerCase().split("\\s");
 		if(commands.length == 3 && commands[0].equals("move")){
 			int givenSpeed = Integer.parseInt(commands[2]);
 			if(givenSpeed >= 0 && givenSpeed <= 100) {

@@ -13,7 +13,7 @@ public class Main {
 
 		//Start the text console
 		//TODO: Make a command line arg switch for autonomous and manual
-		ConsoleUI.run(rombi);
+		ConsoleUI.startPrompt(rombi);
 		
 		System.exit(0);
 	}
