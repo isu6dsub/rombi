@@ -14,7 +14,6 @@ public class DataLogger {
 
 	private String file_path;
 	private String[] text;
-	private HashMap<String, Integer> map;
 
 	public DataLogger(String file_path, String[] text) {
 		this.file_path = file_path;
