@@ -3,6 +3,7 @@ package Control;
 import Sub.Rombi;
 
 public class Main {
+	//TODO: Fix this up so that we the ability to start the sub 
 	public static void main(String[] args){
 		System.out.println("ROMBI Control Program v0.1.0");
 		System.out.println("Beginning Submarine Setup");

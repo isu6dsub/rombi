@@ -62,17 +62,44 @@ public class Rombi {
 		
 	}
 
-	public void interpretCommand(String command) {
-		String[] commands = command.toLowerCase().split("\\s");
-		if(commands.length == 3 && commands[0].equals("move")){
-			int givenSpeed = Integer.parseInt(commands[2]);
-			if(givenSpeed >= 0 && givenSpeed <= 100) {
-				if(commands[1].equals("forward")) Movement.Forward(givenSpeed, motors);
-				else if(commands[1].equals("backward")) Movement.Backward(givenSpeed, motors);
-				else System.out.println("Either the movement direction is invalid or not supported yet. Check and try again.");
-			}
-			else System.out.println("Invalid Speed Given.");
+	public void move(String direction, int speed){
+		switch(direction.toLowerCase()){
+			case "forward":
+				Movement.Forward(speed, motors);
+				break;
+			case "backward":
+				Movement.Backward(speed, motors);
+				break;
+			case "left translate":
+				Movement.TransLeft(speed, motors);
+				break;
+			case "right translate":
+				Movement.TransRight(speed, motors);
+				break;
+			case "left yaw":
+				Movement.YawLeft(speed, motors);
+				break;
+			case "right yaw":
+				Movement.YawRight(speed, motors);
+				break;
+			case "roll left":
+				Movement.RollLeft(speed, motors);
+				break;
+			case "roll right":
+				Movement.RollRight(speed, motors);
+				break;
+			case "pitch up":
+				Movement.PitchUp(speed, motors);
+				break;
+			case "pitch down":
+				Movement.PitchDown(speed, motors);
+				break;
+			case "surface":
+				Movement.Surface(speed, motors);
+				break;
+			case "dive":
+				Movement.Dive(speed, motors);
+				break;
 		}
-		else System.out.println("I don't understand the command you've given me. Given Command: "+command);
 	}
 }
