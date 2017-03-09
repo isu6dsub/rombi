@@ -1,7 +1,9 @@
 package Utils;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 
 /**
@@ -13,23 +15,38 @@ import java.util.HashMap;
 public class DataLogger {
 
 	private String file_path;
-	private String[] text;
+	private PrintWriter writer;
+	private static DataLogger instance;
+	
+	public static DataLogger getInstance() {
+		if (instance == null) {
+			try {
+				instance = new DataLogger("stuff");
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return instance;
 
-	public DataLogger(String file_path, String[] text) {
+	}
+	
+	private DataLogger(String file_path) throws FileNotFoundException, UnsupportedEncodingException {
 		this.file_path = file_path;
-		this.text = text;
-		writeStuff();
+		writer = new PrintWriter(file_path, "UTF-8");
+		writeStuff("Logger started");
 	}
 
-	private void writeStuff() {
-		try {
-			PrintWriter writer = new PrintWriter(file_path, "UTF-8");
-			for (int i = 0; i < text.length; i++) {
-				writer.println(text[i]);
-			}
-			writer.close();
-		} catch (IOException e) {
-			System.out.println("Error occured, but I have no idea what might've gone wrong.");
-		}
+	public void writeStuff(String text) {
+		writer.println(System.currentTimeMillis() + " - " + text);
+	}
+	
+	public void closeLog(){
+		writeStuff("Logger closing");
+		writer.close();
+		instance = null;
 	}
 }

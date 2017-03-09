@@ -11,9 +11,9 @@ import Sub.Drivers.PWM.*;
  */
 public class Motor {
 	//Static values for the minimum, midpoint, and maximum value
-	private static int MIN_PWM = 800;
-	private static int MID_PWM = 1600;
-	private static int MAX_PWM = 2400;
+	private int MIN_PWM;
+	private int MID_PWM;
+	private int MAX_PWM;
 
 	//Enum defining direction
 	private enum Direction { FORWARD, BACKWARD };
@@ -26,11 +26,17 @@ public class Motor {
 	/**
 	 * 
 	 * @param pwmChannelBase
+	 * @param max 
+	 * @param mid 
+	 * @param min 
 	 */
-	public Motor(PWMChannelBase pwmChannelBase){
+	public Motor(PWMChannelBase pwmChannelBase, int min, int mid, int max){
 		this.speed = 0;
 		this.motorDirection = Direction.FORWARD;
 		this.pwm_channel = pwmChannelBase;
+		this.MIN_PWM = min;
+		this.MID_PWM = mid;
+		this.MAX_PWM = max;
 	}
 	
 	/**

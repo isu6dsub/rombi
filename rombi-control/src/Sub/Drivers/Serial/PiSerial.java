@@ -27,7 +27,7 @@ public class PiSerial implements SerialBase{
 		}
 	}
 	
-	//This now works. Was some weird issue, I guess. Now I just need to make it 
+	
 	@Override
 	public String read() {
 		try {

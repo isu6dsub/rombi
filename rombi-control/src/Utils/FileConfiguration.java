@@ -16,6 +16,14 @@ public class FileConfiguration {
 
 	private String file_path;
 	private HashMap<String, Integer> map;
+	private static FileConfiguration instance;
+	
+	public static FileConfiguration getInstance(String filePath){
+		if(instance == null) {
+			instance = new FileConfiguration(filePath);
+		}
+		return instance;
+	}
 
 	/**
 	 * Creates a new FileConfiguration with a file path name and upon creation
@@ -30,7 +38,7 @@ public class FileConfiguration {
 	 * @param file_path
 	 * @throws FileNotFoundException
 	 */
-	public FileConfiguration(String file_path) {
+	private FileConfiguration(String file_path) {
 		this.file_path = file_path;
 		readFile();
 	}
@@ -38,12 +46,11 @@ public class FileConfiguration {
 	/**
 	 * Reads the file and creates a hashmap of the contents
 	 * 
-	 * @return
-	 * @throws FileNotFoundException
+	 * @throws FileNotFoundException If the file isn't found, an empty map will be added.
 	 */
 	private void readFile() {
 		try {
-			HashMap<String, Integer> newMap = new HashMap<String, Integer>();
+			map = new HashMap<String, Integer>();
 			String k;
 			Integer v;
 			File file = new File(file_path);
@@ -52,16 +59,15 @@ public class FileConfiguration {
 			scanner = new Scanner(file);
 
 			while (scanner.hasNext()) {
-				k = scanner.nextLine();
+				k = scanner.next();
 				v = scanner.nextInt();
 				if (v != null && k != null)
-					newMap.put(k, v);
+					map.put(k, v);
 			}
 
 			scanner.close();
-			map = newMap;
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			map = new HashMap<String, Integer>();
 		}
 	}
 
@@ -80,7 +86,11 @@ public class FileConfiguration {
 	/**
 	 * @return a hashMap<String, Int> made by the most recent file_path.
 	 */
-	public HashMap<String, Integer> getMap() {
-		return map;
+	public int getConfigValue(String searchKey) {
+		return map.get(searchKey);
+	}
+	
+	public boolean containsConfigValue(String searchKey) {
+		return map.containsKey(searchKey);
 	}
 }

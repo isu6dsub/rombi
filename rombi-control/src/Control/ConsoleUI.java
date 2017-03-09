@@ -3,7 +3,12 @@ package Control;
 import java.util.Scanner;
 
 import Sub.Rombi;
-//TODO: Replace this entire thing with something like a dos prompt.
+
+/**
+ * 
+ * @author Vaughn Dorsey
+ *
+ */
 public class ConsoleUI {
 	
 	public static void startPrompt(Rombi rombi){
