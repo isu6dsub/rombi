@@ -1,8 +1,5 @@
 package Sub;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-
 import com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException;
 
 import Sub.Drivers.PWM.*;
@@ -11,11 +8,19 @@ import Utils.DataLogger;
 import Utils.FileConfiguration;
 import Sub.Components.*;
 
+/**
+ * 
+ * @author Vaughn Dorsey
+ *
+ */
 public class Rombi {
 	private Motor motors[];
 	private PWMBase pwmBoard;
 	private IMU imu;
 	
+	/**
+	 * 
+	 */
 	public Rombi() {
 		FileConfiguration config = FileConfiguration.getInstance("SubConfig.txt");
 		DataLogger.getInstance();
@@ -57,6 +62,9 @@ public class Rombi {
 		
 	}
 	
+	/**
+	 * 
+	 */
 	public void stop(){
 		for(Motor m:motors){
 			m.stop();
@@ -65,10 +73,18 @@ public class Rombi {
 		DataLogger.getInstance().closeLog();
 	}
 	
+	/**
+	 * 
+	 */
 	public void systemCheck(){
 		imu.checkAndCorrect(motors);
 	}
 
+	/**
+	 * 
+	 * @param direction
+	 * @param speed
+	 */
 	public void move(String direction, int speed){
 		switch(direction.toLowerCase()){
 			case "forward":
@@ -108,5 +124,7 @@ public class Rombi {
 				Movement.Dive(speed, motors);
 				break;
 		}
+		
+		DataLogger.getInstance().writeStuff("Command issued: "+direction+" "+speed);
 	}
 }

@@ -2,7 +2,11 @@ package Sub.Components;
 
 import Sub.Drivers.PWM.TestPWMDevice;
 import Sub.Drivers.Serial.*;
-
+/**
+ * 
+ * @author vwdorsey
+ *
+ */
 public class IMU {
 	private SerialBase connection;
 	/*
@@ -17,6 +21,9 @@ public class IMU {
 	private double[] level;
 	private double[] lastReading;
 	
+	/**
+	 * 
+	 */
 	public IMU(){
 		if(System.getProperty("os.arch").equals("amd64")){
 			connection = new TestSerial("null", 0, 22);
@@ -41,6 +48,10 @@ public class IMU {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param motors
+	 */
 	public void checkAndCorrect(Motor[] motors){
 		String read = connection.read();
 		System.out.println(read);
@@ -258,6 +269,11 @@ public class IMU {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param input
+	 * @return
+	 */
 	private double[] parseSerial(String input){
 		double[] result = new double[3];
 		String[] firstPass = input.split("=");

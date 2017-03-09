@@ -6,7 +6,7 @@ public class Main {
 	//TODO: Fix this up so that we the ability to start the sub remotely
 	public static void main(String[] args){
 		System.out.println("ROMBI Control Program v1.0.0");
-		if(args.length > 1){
+		if(args.length > 0){
 			System.out.println("Beginning Submarine Setup");
 			
 			//All that should be done here is to create a new instance of Rombi. The Rombi constructor should do the rest.
