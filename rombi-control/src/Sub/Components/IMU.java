@@ -2,6 +2,7 @@ package Sub.Components;
 
 import Sub.Drivers.PWM.TestPWMDevice;
 import Sub.Drivers.Serial.*;
+import Utils.DataLogger;
 /**
  * 
  * @author Vaughn Dorsey
@@ -59,9 +60,8 @@ public class IMU {
 	 */
 	public void checkAndCorrect(Motor[] motors){
 		String read = connection.read();
-		System.out.println(read);
 		lastReading = parseSerial(read);
-		System.out.println("LAST IMU READING: Yaw:"+lastReading[0]+" Pitch:"+lastReading[1]+" Roll:"+lastReading[2]);
+		DataLogger.getInstance().writeStuff("IMU READING: Yaw:"+lastReading[0]+" Pitch:"+lastReading[1]+" Roll:"+lastReading[2]);
 		//If the sub is yawing more than a little to the right, speedup the right motor to balance it
 		if(lastReading[0] > (level[0] + 0.05)) {
 			//The values might need adjusted later
@@ -301,4 +301,29 @@ public class IMU {
 		return result;
 	}
 	
+	
+	public class IMURunner implements Runnable {
+		
+		private IMU imu;
+		private Motor[] motors;
+		
+		public IMURunner(IMU imu, Motor[] motors){
+			this.imu = imu;
+			this.motors = motors;
+		}
+		
+		@Override
+		public void run() {
+			while(true){
+				imu.checkAndCorrect(motors);
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+	}
 }

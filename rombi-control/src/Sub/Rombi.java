@@ -7,6 +7,7 @@ import Sub.Logic.Movement;
 import Utils.DataLogger;
 import Utils.FileConfiguration;
 import Sub.Components.*;
+import Sub.Components.IMU.IMURunner;
 
 /**
  * The object that represents the submarine. It contains variables
@@ -31,7 +32,6 @@ public class Rombi {
 		DataLogger.getInstance();
 		if(System.getProperty("os.arch").equals("amd64")){
 			pwmBoard = new TestPWMDevice();
-			imu = new IMU();
 		}
 		else {
 			try {
@@ -53,7 +53,6 @@ public class Rombi {
 				System.exit(-1);
 			}
 			
-			imu = new IMU();
 		}
 		
 		motors = new Motor[6];
@@ -65,6 +64,11 @@ public class Rombi {
 					(config.containsConfigValue("motor"+i+"max") ? config.getConfigValue("motor"+i+"max") :2400));
 		}
 		
+		imu = new IMU();
+		IMURunner runner = imu.new IMURunner(imu, motors);
+		Thread t = new Thread(runner);
+		t.setDaemon(true);
+		t.start();
 	}
 	
 	/**

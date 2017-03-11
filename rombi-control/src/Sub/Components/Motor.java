@@ -81,7 +81,7 @@ public class Motor {
 	 * Commands the motor to immediately stop by setting the PWM value to 0,
 	 * which the ESC won't run at.
 	 */
-	public void stop(){
+	public synchronized void stop(){
 		speed = 0;
 		try {
 			if(pwm_channel == null) return;
@@ -99,7 +99,7 @@ public class Motor {
 	 * @param speed New speed of the sub as a percentage
 	 * @throws IOException 
 	 */
-	public int setSpeed(int speed){
+	public synchronized int setSpeed(int speed){
 		if(speed > 100 || speed < 0){
 			return -1;
 		}
@@ -124,7 +124,7 @@ public class Motor {
 	 * 
 	 * @return Current speed of motor.
 	 */
-	public int getSpeed(){
+	public synchronized int getSpeed(){
 		return speed;
 	}
 	
@@ -132,7 +132,7 @@ public class Motor {
 	 * Switches the direction of the motor and then attempts
 	 * to reset the ESC to make the motor go in the desired direction.
 	 */
-	public void switchDirection(){
+	public synchronized void switchDirection(){
 		this.stop();
 		if(motorDirection == Direction.FORWARD){
 			motorDirection = Direction.BACKWARD;
@@ -159,7 +159,7 @@ public class Motor {
 	 * 
 	 * @return True if motor is operating in forward mode, false if in reverse.
 	 */
-	public boolean direction(){
+	public synchronized boolean direction(){
 		if(motorDirection == Direction.FORWARD) return true;
 		else return false;
 	}

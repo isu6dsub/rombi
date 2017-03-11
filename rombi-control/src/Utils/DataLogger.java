@@ -54,7 +54,7 @@ public class DataLogger {
 	 * Writes a string to the current log file.
 	 * @param text
 	 */
-	public void writeStuff(String text) {
+	public synchronized void writeStuff(String text) {
 		writer.println(System.currentTimeMillis() + " - " + text);
 	}
 	
@@ -62,7 +62,7 @@ public class DataLogger {
 	 * Writes a message about the logger shutting off
 	 * and then closes the file.
 	 */
-	public void closeLog(){
+	public synchronized void closeLog(){
 		writeStuff("Logger closing");
 		writer.close();
 		instance = null;
