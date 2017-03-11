@@ -4,11 +4,16 @@ import Sub.Drivers.PWM.TestPWMDevice;
 import Sub.Drivers.Serial.*;
 /**
  * 
- * @author vwdorsey
+ * @author Vaughn Dorsey
  *
  */
 public class IMU {
+	
+	/**
+	 * 
+	 */
 	private SerialBase connection;
+	
 	/*
 	 * The next three arrays hold XYZ values of the IMU's orientation
 	 * Flat = what the first, flat surface measurement is (sub should be level when configuring). Mainly a reference.

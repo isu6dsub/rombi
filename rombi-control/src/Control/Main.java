@@ -1,7 +1,12 @@
 package Control;
 
 import Sub.Rombi;
-
+/**
+ * This is the main class of the ROMBI Control Software.
+ * 
+ * @author Vaughn Dorsey
+ *
+ */
 public class Main {
 	//TODO: Fix this up so that we the ability to start the sub remotely
 	public static void main(String[] args){

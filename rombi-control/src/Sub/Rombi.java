@@ -9,6 +9,11 @@ import Utils.FileConfiguration;
 import Sub.Components.*;
 
 /**
+ * The object that represents the submarine. It contains variables
+ * to store references to the motors, the pwmBoard, and the IMU, 
+ * among other later additions. This also sets up and starts all 
+ * of the systems that comprise the submarine and provides access to
+ * the underlying systems with API methods.
  * 
  * @author Vaughn Dorsey
  *
@@ -63,7 +68,9 @@ public class Rombi {
 	}
 	
 	/**
-	 * 
+	 * Method to shut down the submarine safely.
+	 * Stops all of the motors and shuts the logger down
+	 * so that all data is saved.
 	 */
 	public void stop(){
 		for(Motor m:motors){
@@ -74,7 +81,8 @@ public class Rombi {
 	}
 	
 	/**
-	 * 
+	 * Asks the IMU to get a new value and to check the orientation
+	 * of the submarine.
 	 */
 	public void systemCheck(){
 		imu.checkAndCorrect(motors);

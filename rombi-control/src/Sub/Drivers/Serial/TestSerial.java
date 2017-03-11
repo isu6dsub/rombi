@@ -1,7 +1,14 @@
 package Sub.Drivers.Serial;
 
+/**
+ * This is only a test stub driver so that the software
+ * can be tested on a system other than the Pi.
+ * 
+ * @author Vaughn Dorsey
+ *
+ */
 public class TestSerial implements SerialBase{
-
+	
 	public TestSerial(String dev, int baud, int line) {
 		// TODO Auto-generated constructor stub
 	}

@@ -18,17 +18,40 @@ import Sub.Drivers.PWM.*;
  *
  */
 public class Motor {
-	//Static values for the minimum, midpoint, and maximum value
+	/**
+	 * Minimum PWM Value
+	 */
 	private int MIN_PWM;
+	/**
+	 * PWM Midpoint Value
+	 */
 	private int MID_PWM;
+	/**
+	 * Maximum PWM Value
+	 */
 	private int MAX_PWM;
 
-	//Enum defining direction
+	/**
+	 * Enum defining the direction of the propulsion.
+	 * 
+	 * @author vwdorsey
+	 *
+	 */
 	private enum Direction { FORWARD, BACKWARD };
 	
-	//Variables that hold data for each motor.
+	/**
+	 * Variable holding current motor speed.
+	 */
 	private int speed;
+	
+	/**
+	 * Variable holding current motor direction.
+	 */
 	private Direction motorDirection;
+	
+	/**
+	 * Variable holding what pwm_channel corresponds to the motor.
+	 */
 	private PWMChannelBase pwm_channel;
 	
 	/**

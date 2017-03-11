@@ -161,6 +161,13 @@ public class ConsoleUI {
 		}
 	}
 	
+	/**
+	 * This method prints out a list of statements when the
+	 * user requests help on the command line. It will also contain
+	 * specific help statements for each command at some point.
+	 * 
+	 * @param command The command that the user is requesting help for. Will be 'interpreter' if only 'help' is typed.
+	 */
 	public static void showHelp(String command){
 		switch(command.toLowerCase()){
 			case "interpreter":
@@ -177,7 +184,7 @@ public class ConsoleUI {
 				System.out.println("exit - Shut sub down.");
 				break;
 			default:
-				
+				System.out.println("Help unavailable for command.");
 		}
 	}
 }

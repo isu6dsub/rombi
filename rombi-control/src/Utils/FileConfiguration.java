@@ -84,12 +84,21 @@ public class FileConfiguration {
 	}
 
 	/**
-	 * @return a hashMap<String, Int> made by the most recent file_path.
+	 * Retrieves a value from the configuration storage hashmap.
+	 * 
+	 * @param searchKey The key being looked for.
+	 * @return Integer value for whatever key is passed in, if available.
 	 */
 	public int getConfigValue(String searchKey) {
 		return map.get(searchKey);
 	}
 	
+	/**
+	 * Checks to see if a value exists in the configuration storage hashmap.
+	 * 
+	 * @param searchKey
+	 * @return
+	 */
 	public boolean containsConfigValue(String searchKey) {
 		return map.containsKey(searchKey);
 	}

@@ -18,10 +18,14 @@ public class DataLogger {
 	private PrintWriter writer;
 	private static DataLogger instance;
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public static DataLogger getInstance() {
 		if (instance == null) {
 			try {
-				instance = new DataLogger("stuff");
+				instance = new DataLogger(System.currentTimeMillis()+".txt");
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -34,16 +38,30 @@ public class DataLogger {
 
 	}
 	
+	/**
+	 * 
+	 * @param file_path
+	 * @throws FileNotFoundException
+	 * @throws UnsupportedEncodingException
+	 */
 	private DataLogger(String file_path) throws FileNotFoundException, UnsupportedEncodingException {
 		this.file_path = file_path;
 		writer = new PrintWriter(file_path, "UTF-8");
 		writeStuff("Logger started");
 	}
 
+	/**
+	 * Writes a string to the current log file.
+	 * @param text
+	 */
 	public void writeStuff(String text) {
 		writer.println(System.currentTimeMillis() + " - " + text);
 	}
 	
+	/**
+	 * Writes a message about the logger shutting off
+	 * and then closes the file.
+	 */
 	public void closeLog(){
 		writeStuff("Logger closing");
 		writer.close();
