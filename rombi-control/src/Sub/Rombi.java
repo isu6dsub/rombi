@@ -20,12 +20,40 @@ import Sub.Components.IMU.IMURunner;
  *
  */
 public class Rombi {
+	/**
+	 * The array that contains all of the motors that the minisub has.
+	 */
 	private Motor motors[];
+	/**
+	 * Access to the PWM hat on the Pi. Needed to set the Motor PWM channels.
+	 */
 	private PWMBase pwmBoard;
+	/**
+	 * Object that represents the Sub's IMU
+	 */
 	private IMU imu;
 	
 	/**
+	 * Singleton instance of the minisub.
+	 */
+	private static Rombi instance;
+	
+	/**
+	 * Fetches a Singleton instance of the submarine, since there's only one
+	 * being controlled. If an instance doesn't exist, it's created.
 	 * 
+	 * @return A single Rombi instance, either new or already made.
+	 */
+	public static Rombi getInstance(){
+		if(instance == null) {
+			instance = new Rombi();
+		}
+		return instance;
+	}
+	
+	/**
+	 * Constructs the submarine object and initializes all of the systems that
+	 * the submarine will use during it's operations.
 	 */
 	public Rombi() {
 		FileConfiguration config = FileConfiguration.getInstance("SubConfig.txt");
@@ -72,8 +100,8 @@ public class Rombi {
 	}
 	
 	/**
-	 * Method to shut down the submarine safely.
-	 * Stops all of the motors and shuts the logger down
+	 * This method shuts down the submarine safely.
+	 * It stops all of the motors and shuts the logger down
 	 * so that all data is saved.
 	 */
 	public void stop(){
@@ -93,9 +121,11 @@ public class Rombi {
 	}
 
 	/**
+	 * Translates movement commands from the UI or the task list into
+	 * calls to the movement logic. Also logs each command and speed given.
 	 * 
-	 * @param direction
-	 * @param speed
+	 * @param command The direction and action to take
+	 * @param speed A throttle percentage
 	 */
 	public void move(String direction, int speed){
 		switch(direction.toLowerCase()){

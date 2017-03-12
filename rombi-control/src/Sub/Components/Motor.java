@@ -21,6 +21,7 @@ public class Motor {
 	/**
 	 * Minimum PWM Value
 	 */
+	@SuppressWarnings("unused")
 	private int MIN_PWM;
 	/**
 	 * PWM Midpoint Value

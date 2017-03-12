@@ -1,24 +1,30 @@
 package Utils;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
 
 /**
- * JavaDoc to come 2/23
+ * Provides a way to log data to file from the submarine
  *
  * @author Joseph Hudson
- *
+ * @author Vaughn Dorsey
  */
 public class DataLogger {
 
-	private String file_path;
+	/**
+	 * Used to write data to a file.
+	 */
 	private PrintWriter writer;
+	/**
+	 * Singleton instance of a datalogger.
+	 */
 	private static DataLogger instance;
 	
 	/**
+	 * Provides a singleton instance of a log.
+	 * If the object hasn't been created, it calls for it to be
+	 * created before being returned.
 	 * 
 	 * @return
 	 */
@@ -39,20 +45,20 @@ public class DataLogger {
 	}
 	
 	/**
+	 * Creates an instance of a datalogger.
 	 * 
-	 * @param file_path
-	 * @throws FileNotFoundException
-	 * @throws UnsupportedEncodingException
+	 * @param file_path Path for the logfile to be saved at.
+	 * @throws FileNotFoundException Throws is file isn't found. Shouldn't be thrown.
+	 * @throws UnsupportedEncodingException Throws if encoding type isn't supported on system. Shouldn't be thrown for our usecase.
 	 */
 	private DataLogger(String file_path) throws FileNotFoundException, UnsupportedEncodingException {
-		this.file_path = file_path;
 		writer = new PrintWriter(file_path, "UTF-8");
 		writeStuff("Logger started");
 	}
 
 	/**
-	 * Writes a string to the current log file.
-	 * @param text
+	 * Writes a string to the current log file with a to the millisecond timestamp.
+	 * @param text String to write to file.
 	 */
 	public synchronized void writeStuff(String text) {
 		writer.println(System.currentTimeMillis() + " - " + text);

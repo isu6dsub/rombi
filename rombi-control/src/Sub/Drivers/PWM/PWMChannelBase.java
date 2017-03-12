@@ -2,6 +2,12 @@ package Sub.Drivers.PWM;
 
 import java.io.IOException;
 
+/**
+ * Used as a base for the PWM Channel for both production and testing.
+ * 
+ * @author Vaughn Dorsey
+ *
+ */
 public abstract class PWMChannelBase {
 	protected final int channel;
 

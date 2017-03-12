@@ -1,7 +1,6 @@
 package Sub.Logic;
 
 import Sub.Components.Motor;
-import Sub.Drivers.PWM.PWMBase;
 
 /**
  * This class contains functions that define what motors should be used
@@ -24,9 +23,11 @@ import Sub.Drivers.PWM.PWMBase;
 public class Movement {
 	
 	/**
+	 * Commands the submarine to drive forward by turning 
+	 * the correct motor pair on to push the submarine forward.
 	 * 
-	 * @param speed
-	 * @param motors
+	 * @param speed Amount of throttle as a percentage.
+	 * @param motors The set of motors.
 	 */
 	public static void Forward(int speed, Motor[] motors){
 		if(!motors[1].direction()) motors[1].switchDirection();
@@ -37,9 +38,11 @@ public class Movement {
 	}
 	
 	/**
+	 * Commands the submarine to drive backward by turning 
+	 * the correct motor pair on to push the submarine backward.
 	 * 
-	 * @param speed
-	 * @param motors
+	 * @param speed Amount of throttle as a percentage.
+	 * @param motors The set of motors.
 	 */
 	public static void Backward(int speed, Motor[] motors){
 		if(motors[1].direction()) motors[1].switchDirection();
@@ -50,9 +53,11 @@ public class Movement {
 	}
 
 	/**
+	 * Commands the submarine to translate left by turning 
+	 * the correct motor pair on to push the submarine left.
 	 * 
-	 * @param speed
-	 * @param motors
+	 * @param speed Amount of throttle as a percentage.
+	 * @param motors The set of motors.
 	 */
 	public static void TransLeft(int speed, Motor[] motors){
 		if(motors[2].direction()) motors[2].switchDirection();
@@ -63,9 +68,11 @@ public class Movement {
 	}
 
 	/**
+	 * Commands the submarine to translate right by turning 
+	 * the correct motor pair on to push the submarine right.
 	 * 
-	 * @param speed
-	 * @param motors
+	 * @param speed Amount of throttle as a percentage.
+	 * @param motors The set of motors.
 	 */
 	public static void TransRight(int speed, Motor[] motors){
 		if(motors[2].direction()) motors[2].switchDirection();
@@ -76,9 +83,12 @@ public class Movement {
 	}
 
 	/**
+	 * Commands the submarine to surface by adjusting the motor pair
+	 * responsible for keeping the submarine underwater to not work as
+	 * hard keeping it underwater, thereby surfacing the submarine.
 	 * 
-	 * @param speed
-	 * @param motors
+	 * @param speed Amount of throttle as a percentage.
+	 * @param motors The set of motors.
 	 */
 	public static void Surface(int speed, Motor[] motors){
 		motors[3].setSpeed(100-speed);
@@ -86,9 +96,12 @@ public class Movement {
 	}
 
 	/**
+	 * Commands the submarine to surface by adjusting the motor pair
+	 * responsible for keeping the submarine underwater to work harder
+	 * to keep it underwater, thereby pushing the submarine deeper.
 	 * 
-	 * @param speed
-	 * @param motors
+	 * @param speed Amount of throttle as a percentage.
+	 * @param motors The set of motors.
 	 */
 	public static void Dive(int speed, Motor[] motors){
 		motors[3].setSpeed(50+speed);
@@ -96,9 +109,11 @@ public class Movement {
 	}
 
 	/**
+	 * Commands the submarine to pitch up by turning 
+	 * the correct motor pair on to rotate the submarine upward.
 	 * 
-	 * @param speed
-	 * @param motors
+	 * @param speed Amount of throttle as a percentage.
+	 * @param motors The set of motors.
 	 */
 	public static void PitchUp(int speed, Motor[] motors){
 		if(motors[1].direction()) motors[1].switchDirection();
@@ -109,9 +124,11 @@ public class Movement {
 	}
 
 	/**
+	 * Commands the submarine to pitch down by turning 
+	 * the correct motor pair on to rotate the submarine downward.
 	 * 
-	 * @param speed
-	 * @param motors
+	 * @param speed Amount of throttle as a percentage.
+	 * @param motors The set of motors.
 	 */
 	public static void PitchDown(int speed, Motor[] motors){
 		if(!motors[1].direction()) motors[1].switchDirection();
@@ -122,9 +139,11 @@ public class Movement {
 	}
 
 	/**
+	 * Commands the submarine to roll left by turning 
+	 * the correct motor pair on to rotate the submarine to the left.
 	 * 
-	 * @param speed
-	 * @param motors
+	 * @param speed Amount of throttle as a percentage.
+	 * @param motors The set of motors.
 	 */
 	public static void RollLeft(int speed, Motor[] motors){
 		motors[3].setSpeed(50-speed);
@@ -132,9 +151,11 @@ public class Movement {
 	}
 
 	/**
+	 * Commands the submarine to roll right by turning 
+	 * the correct motor pair on to push the submarine to the right.
 	 * 
-	 * @param speed
-	 * @param motors
+	 * @param speed Amount of throttle as a percentage.
+	 * @param motors The set of motors.
 	 */
 	public static void RollRight(int speed, Motor[] motors){
 		motors[3].setSpeed(50+speed);
@@ -142,9 +163,11 @@ public class Movement {
 	}
 
 	/**
+	 * Commands the submarine to yaw to the left by turning 
+	 * the correct motor pair on to spin the submarine to the left.
 	 * 
-	 * @param speed
-	 * @param motors
+	 * @param speed Amount of throttle as a percentage.
+	 * @param motors The set of motors.
 	 */
 	public static void YawLeft(int speed, Motor[] motors){
 		if(!motors[2].direction()) motors[2].switchDirection();
@@ -155,9 +178,11 @@ public class Movement {
 	}
 
 	/**
+	 * Commands the submarine to yaw to the right by turning 
+	 * the correct motor pair on to spin the submarine to the right.
 	 * 
-	 * @param speed
-	 * @param motors
+	 * @param speed Amount of throttle as a percentage.
+	 * @param motors The set of motors.
 	 */
 	public static void YawRight(int speed, Motor[] motors){
 		if(motors[2].direction()) motors[2].switchDirection();

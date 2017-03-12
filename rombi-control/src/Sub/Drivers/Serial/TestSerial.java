@@ -4,6 +4,9 @@ package Sub.Drivers.Serial;
  * This is only a test stub driver so that the software
  * can be tested on a system other than the Pi.
  * 
+ * Could use some improvments to allow for the stabilization code
+ * to be tested.
+ * 
  * @author Vaughn Dorsey
  *
  */
@@ -20,6 +23,9 @@ public class TestSerial implements SerialBase{
 		
 	}
 
+	/**
+	 * Test read function. Returns only a single value.
+	 */
 	@Override
 	public String read() {
 		// TODO Auto-generated method stub

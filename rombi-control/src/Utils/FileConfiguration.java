@@ -14,10 +14,26 @@ import java.util.Scanner;
 
 public class FileConfiguration {
 
+	/**
+	 * File path being read from
+	 */
 	private String file_path;
+	/**
+	 * HashMap containing all of the config values from file.
+	 */
 	private HashMap<String, Integer> map;
+	/**
+	 * Singleton instance of a fileConfiguration object
+	 */
 	private static FileConfiguration instance;
 	
+	/**
+	 * Returns a single instance of the fileConfiguration object.
+	 * If the object hasn't been created, it will load it.
+	 * 
+	 * @param filePath File path to the config file.
+	 * @return Instance of fileConfiguration.
+	 */
 	public static FileConfiguration getInstance(String filePath){
 		if(instance == null) {
 			instance = new FileConfiguration(filePath);
@@ -76,7 +92,7 @@ public class FileConfiguration {
 	 * based upon the new file_path and stores the new hashmap instead of the
 	 * old.
 	 * 
-	 * @param file_path
+	 * @param file_path New file path.
 	 */
 	public void changeFile(String file_path) {
 		this.file_path = file_path;
@@ -86,8 +102,8 @@ public class FileConfiguration {
 	/**
 	 * Retrieves a value from the configuration storage hashmap.
 	 * 
-	 * @param searchKey The key being looked for.
-	 * @return Integer value for whatever key is passed in, if available.
+	 * @param searchKey The desired configuration item.
+	 * @return The value of the config item, if present.
 	 */
 	public int getConfigValue(String searchKey) {
 		return map.get(searchKey);
@@ -96,8 +112,8 @@ public class FileConfiguration {
 	/**
 	 * Checks to see if a value exists in the configuration storage hashmap.
 	 * 
-	 * @param searchKey
-	 * @return
+	 * @param searchKey The desired configuration item.
+	 * @return If the map has a matching item.
 	 */
 	public boolean containsConfigValue(String searchKey) {
 		return map.containsKey(searchKey);

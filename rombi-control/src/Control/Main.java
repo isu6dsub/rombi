@@ -15,22 +15,29 @@ public class Main {
 			System.out.println("Beginning Submarine Setup");
 			
 			//All that should be done here is to create a new instance of Rombi. The Rombi constructor should do the rest.
-			Rombi rombi = new Rombi();
+			Rombi.getInstance();
 			System.out.println("Submarine Setup Complete. Beginning main control program.");
 	
 			//Start the text console
-			if(args[0].equals("-i")) ConsoleUI.startPrompt(rombi);
-			else {
+			if(args[0].equals("-i")) ConsoleUI.startPrompt();
+			else if(args[0].equals("-a") && args.length == 2){
 				
+			}
+			else {
+				errorMessage();
 			}
 			
 		}
 		else{
-			System.out.println("Invalid arguments given. Please check arguments.");
-			System.out.println("Valid arguments:");
-			System.out.println("-a <TASKFILE> - Start sub in autonomous mode with given taskfile.");
-			System.out.println("-i - Start sub in interactive mode.");
+			errorMessage();
 		}
 		System.exit(0);
+	}
+	
+	private static void errorMessage() {
+		System.out.println("Invalid arguments given. Please check arguments.");
+		System.out.println("Valid arguments:");
+		System.out.println("-a <TASKFILE> - Start sub in autonomous mode with given taskfile.");
+		System.out.println("-i - Start sub in interactive mode.");
 	}
 }

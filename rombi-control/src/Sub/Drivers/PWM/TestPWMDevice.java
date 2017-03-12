@@ -2,6 +2,13 @@ package Sub.Drivers.PWM;
 
 import java.io.IOException;
 
+/**
+ * This is a stub driver used for running the code on PCs.
+ * It doesn't really do much at this point.
+ * 
+ * @author Vaughn Dorsey
+ *
+ */
 public class TestPWMDevice implements PWMBase{
 	public TestPWMDevice(){
 		
@@ -37,6 +44,12 @@ public class TestPWMDevice implements PWMBase{
 		return 0;
 	}
 	
+	/**
+	 * A test PWM channel to appease the test driver.
+	 * 
+	 * @author Vaughn Dorsey
+	 *
+	 */
 	public class TestPWMChannel extends PWMChannelBase{
 		protected TestPWMChannel(int channel){
 			super(channel);

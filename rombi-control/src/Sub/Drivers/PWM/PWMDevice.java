@@ -42,7 +42,9 @@ import com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException;
  * This class represents an Adafruit 16 channel I2C PWM driver board.
  * 
  * @author Marcus Hirt
- * Edited by Vaughn Dorsey, 11/28/16
+ * 
+ * Edited by Vaughn Dorsey, 11/28/16, to move some of the functions into an interface
+ * to make a test driver possible.
  */
 @SuppressWarnings("unused")
 // Not using all commands - yet.
