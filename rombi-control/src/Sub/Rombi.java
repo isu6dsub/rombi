@@ -4,8 +4,8 @@ import com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException;
 
 import Sub.Drivers.PWM.*;
 import Sub.Logic.Movement;
-import Utils.DataLogger;
-import Utils.FileConfiguration;
+import Sub.Tools.DataLogger;
+import Sub.Tools.FileConfiguration;
 import Sub.Components.*;
 import Sub.Components.IMU.IMURunner;
 
@@ -124,11 +124,11 @@ public class Rombi {
 	 * Translates movement commands from the UI or the task list into
 	 * calls to the movement logic. Also logs each command and speed given.
 	 * 
-	 * @param command The direction and action to take
+	 * @param action The direction and action to take
 	 * @param speed A throttle percentage
 	 */
-	public void move(String direction, int speed){
-		switch(direction.toLowerCase()){
+	public void move(String action, int speed){
+		switch(action.toLowerCase()){
 			case "forward":
 				Movement.Forward(speed, motors);
 				break;
@@ -167,6 +167,6 @@ public class Rombi {
 				break;
 		}
 		
-		DataLogger.getInstance().writeStuff("Command issued: "+direction+" "+speed);
+		DataLogger.getInstance().writeStuff("Command issued: "+action+" "+speed);
 	}
 }

@@ -1,4 +1,4 @@
-package Utils;
+package Sub.Tools;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,7 +9,7 @@ import java.util.Scanner;
  * 
  * @author Joseph Hudson
  *
- *         File configuration makes and returns a hashMap stored in a text file
+ *         File configuration takes a file and stores it in a hashmap to be accessed.
  */
 
 public class FileConfiguration {
@@ -85,18 +85,6 @@ public class FileConfiguration {
 		} catch (FileNotFoundException e) {
 			map = new HashMap<String, Integer>();
 		}
-	}
-
-	/**
-	 * Edits the file_path the the file reader. After that, it creates a hashmap
-	 * based upon the new file_path and stores the new hashmap instead of the
-	 * old.
-	 * 
-	 * @param file_path New file path.
-	 */
-	public void changeFile(String file_path) {
-		this.file_path = file_path;
-		readFile();
 	}
 
 	/**

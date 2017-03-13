@@ -1,7 +1,7 @@
 package Sub.Components;
 
 import Sub.Drivers.Serial.*;
-import Utils.DataLogger;
+import Sub.Tools.DataLogger;
 /**
  * This class contains all of the code necessary to interact with
  * the Sparkfun Razor 9DOF IMU that we have been using to help keep

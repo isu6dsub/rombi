@@ -19,9 +19,12 @@ public class Main {
 			System.out.println("Submarine Setup Complete. Beginning main control program.");
 	
 			//Start the text console
-			if(args[0].equals("-i")) ConsoleUI.startPrompt();
+			if(args[0].equals("-i")) {
+				ConsoleUI.startPrompt();
+			}
 			else if(args[0].equals("-a") && args.length == 2){
-				
+				//TODO: Add the functionality for autonomous control.
+				System.out.println("Not Implemented");
 			}
 			else {
 				errorMessage();
@@ -31,7 +34,6 @@ public class Main {
 		else{
 			errorMessage();
 		}
-		System.exit(0);
 	}
 	
 	private static void errorMessage() {
