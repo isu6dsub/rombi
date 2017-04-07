@@ -16,33 +16,6 @@ public class DataLogger {
 	 * Used to write data to a file.
 	 */
 	private PrintWriter writer;
-	/**
-	 * Singleton instance of a datalogger.
-	 */
-	private static DataLogger instance;
-	
-	/**
-	 * Provides a singleton instance of a log.
-	 * If the object hasn't been created, it calls for it to be
-	 * created before being returned.
-	 * 
-	 * @return
-	 */
-	public static DataLogger getInstance() {
-		if (instance == null) {
-			try {
-				instance = new DataLogger(System.currentTimeMillis()+".txt");
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return instance;
-
-	}
 	
 	/**
 	 * Creates an instance of a datalogger.
@@ -51,7 +24,7 @@ public class DataLogger {
 	 * @throws FileNotFoundException Throws is file isn't found. Shouldn't be thrown.
 	 * @throws UnsupportedEncodingException Throws if encoding type isn't supported on system. Shouldn't be thrown for our usecase.
 	 */
-	private DataLogger(String file_path) throws FileNotFoundException, UnsupportedEncodingException {
+	public DataLogger(String file_path) throws FileNotFoundException, UnsupportedEncodingException {
 		writer = new PrintWriter(file_path, "UTF-8");
 		writeStuff("Logger started");
 	}
@@ -71,6 +44,5 @@ public class DataLogger {
 	public synchronized void closeLog(){
 		writeStuff("Logger closing");
 		writer.close();
-		instance = null;
 	}
 }

@@ -1,5 +1,8 @@
 package Sub;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
 import com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException;
 
 import Sub.Drivers.PWM.*;
@@ -32,6 +35,10 @@ public class Rombi {
 	 * Object that represents the Sub's IMU
 	 */
 	private IMU imu;
+	/**
+	 * Object giving access to a writable logfile.
+	 */
+	protected DataLogger logger;
 	
 	/**
 	 * Singleton instance of the minisub.
@@ -55,9 +62,17 @@ public class Rombi {
 	 * Constructs the submarine object and initializes all of the systems that
 	 * the submarine will use during it's operations.
 	 */
-	public Rombi() {
+	private Rombi() {
 		FileConfiguration config = FileConfiguration.getInstance("SubConfig.txt");
-		DataLogger.getInstance();
+		try {
+			logger = new DataLogger(System.currentTimeMillis()+".txt");
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if(System.getProperty("os.arch").equals("amd64")){
 			pwmBoard = new TestPWMDevice();
 		}
@@ -109,7 +124,7 @@ public class Rombi {
 			m.stop();
 		}
 		
-		DataLogger.getInstance().closeLog();
+		logger.closeLog();
 	}
 	
 	/**
@@ -167,6 +182,10 @@ public class Rombi {
 				break;
 		}
 		
-		DataLogger.getInstance().writeStuff("Command issued: "+action+" "+speed);
+		log("Command issued: "+action+" "+speed);
+	}
+
+	public void log(String string) {
+		logger.writeStuff(string);
 	}
 }

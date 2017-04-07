@@ -68,7 +68,7 @@ public class TaskManager {
 			scanner.close();
 			return returnList;
 		} catch (FileNotFoundException e) {
-			DataLogger.getInstance().writeStuff("Unable to open task file for autonomous functioning. System will exit.");
+			Rombi.getInstance().log("Unable to open task file for autonomous functioning. System will exit.");
 			Rombi.getInstance().stop();
 			System.exit(0);
 		}

@@ -1,7 +1,7 @@
 package Sub.Components;
 
+import Sub.Rombi;
 import Sub.Drivers.Serial.*;
-import Sub.Tools.DataLogger;
 /**
  * This class contains all of the code necessary to interact with
  * the Sparkfun Razor 9DOF IMU that we have been using to help keep
@@ -58,7 +58,7 @@ public class IMU {
 			level = parseSerial(read);
 			lastReading = level.clone();
 		}
-		DataLogger.getInstance().writeStuff("FIRST IMU READING: Yaw:"+lastReading[0]+" Pitch:"+lastReading[1]+" Roll:"+lastReading[2]);
+		Rombi.getInstance().log("FIRST IMU READING: Yaw:"+lastReading[0]+" Pitch:"+lastReading[1]+" Roll:"+lastReading[2]);
 	}
 	
 	/**
@@ -81,7 +81,7 @@ public class IMU {
 	public void checkAndCorrect(Motor[] motors){
 		String read = connection.read();
 		lastReading = parseSerial(read);
-		DataLogger.getInstance().writeStuff("IMU READING: Yaw:"+lastReading[0]+" Pitch:"+lastReading[1]+" Roll:"+lastReading[2]);
+		Rombi.getInstance().log("IMU READING: Yaw:"+lastReading[0]+" Pitch:"+lastReading[1]+" Roll:"+lastReading[2]);
 		//If the sub is yawing more than a little to the right, speedup the right motor to balance it
 		if(lastReading[0] > (level[0] + 0.05)) {
 			//The values might need adjusted later
